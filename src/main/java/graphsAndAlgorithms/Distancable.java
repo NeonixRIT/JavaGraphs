@@ -1,4 +1,4 @@
-package unit08;
+package graphsAndAlgorithms;
 
 public interface Distancable<T> {
     double distance(T other);

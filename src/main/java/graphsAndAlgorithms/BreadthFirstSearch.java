@@ -1,4 +1,4 @@
-package unit08;
+package graphsAndAlgorithms;
 
 import java.util.HashMap;
 import java.util.LinkedList;

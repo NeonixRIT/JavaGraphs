@@ -1,4 +1,4 @@
-package unit08;
+package graphsAndAlgorithms;
 
 public class AStar<T extends Distancable<T>> extends Dijkstras<T> {
     public AStar(WAdjacencyGraph<T> graph) {

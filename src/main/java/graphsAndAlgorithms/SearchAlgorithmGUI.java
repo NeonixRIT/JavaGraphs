@@ -22,7 +22,7 @@
  * The GUI will allow users to select cells to be walls, disconnecting their neighbors in the graph.
  *     Clicking on a wall square will remove the wall, reconnecting the neighbors.
  */
-package unit08;
+package graphsAndAlgorithms;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -57,6 +57,7 @@ public class SearchAlgorithmGUI extends Application {
 
     private static final int DEFAULT_SQUARE_SIZE = 15;
     private static final double BORDER_SIZE = 0.1;
+    private static final int SQAURE_GAP = 5;
 
     private static final int DEFAULT_ROWS = 25;
     private static final int DEFAULT_COLS = 25;
@@ -186,8 +187,8 @@ public class SearchAlgorithmGUI extends Application {
         
         GridPane gridOptions = new GridPane();
         gridOptions.setPadding(new Insets(5));
-        gridOptions.setHgap(5);
-        gridOptions.setVgap(5);
+        gridOptions.setHgap(SQAURE_GAP);
+        gridOptions.setVgap(SQAURE_GAP);
         optionsAndControls.getChildren().add(gridOptions);
 
         Label rowsLabel = new Label("Rows:");

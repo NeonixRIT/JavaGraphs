@@ -1,4 +1,4 @@
-package unit08;
+package graphsAndAlgorithms;
 
 public class Location implements Distancable<Location> {
     private final int x;

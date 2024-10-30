@@ -1,4 +1,4 @@
-package unit08;
+package graphsAndAlgorithms;
 
 public interface WGraph<E> {
     void add(E value);

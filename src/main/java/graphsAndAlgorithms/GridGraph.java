@@ -1,4 +1,4 @@
-package unit08;
+package graphsAndAlgorithms;
 
 import java.util.ArrayList;
 import java.util.HashSet;
