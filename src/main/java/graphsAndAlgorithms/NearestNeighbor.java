@@ -11,7 +11,6 @@ public class NearestNeighbor<T extends Distancable<T>> extends SearchAlgorithm<T
         if (!this.graph.contains(start) || !this.graph.contains(end)) {
             return null;
         }
-        this.running = true;
 
         WVertex<T> startVertex = this.graph.vertices.get(start);
         WVertex<T> endVertex = this.graph.vertices.get(end);
@@ -40,7 +39,6 @@ public class NearestNeighbor<T extends Distancable<T>> extends SearchAlgorithm<T
             path.addLast(nextVertex, minDistance);
             currentVertex = nextVertex;
         }
-        this.running = false;
         return path;
     }
     

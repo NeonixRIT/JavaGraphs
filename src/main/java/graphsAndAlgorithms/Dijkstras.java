@@ -53,7 +53,6 @@ public class Dijkstras<T extends Distancable<T>> extends SearchAlgorithm<T> {
         if (!this.graph.contains(start) || !this.graph.contains(end)) {
             return null;
         }
-        this.running = true;
 
         WVertex<T> startVertex = this.graph.vertices.get(start);
         WVertex<T> endVertex = this.graph.vertices.get(end);
@@ -68,13 +67,8 @@ public class Dijkstras<T extends Distancable<T>> extends SearchAlgorithm<T> {
         heap.add(new PathItem(0, startVertex));
 
         while (!heap.isEmpty()){
-            if (!this.running) return null;
-
             PathItem current = heap.poll();
             WVertex<T> currentVertex = current.vertex;
-            GridVertex gv = (GridVertex) currentVertex;
-            gv.setVisited();
-            this.notifyObservers(gv.getValue());
 
             double currentDistance = current.distance;
             if (visited.contains(currentVertex)) {
@@ -90,9 +84,6 @@ public class Dijkstras<T extends Distancable<T>> extends SearchAlgorithm<T> {
                 if (visited.contains(neighbor)) {
                     continue;
                 }
-                GridVertex gvNeighbor = (GridVertex) neighbor;
-                gvNeighbor.setQueued();
-                this.notifyObservers(gvNeighbor.getValue());
                 double newDistance = currentDistance + currentVertex.weight(neighbor) + this.heuristic(neighbor.getValue(), end);
                 if (newDistance < distances.get(neighbor)) {
                     distances.put(neighbor, newDistance);
@@ -100,7 +91,6 @@ public class Dijkstras<T extends Distancable<T>> extends SearchAlgorithm<T> {
                     heap.add(new PathItem(newDistance, neighbor));
                 }
             }
-            try { Thread.sleep(this.delay); } catch (InterruptedException e) {}
         }
 
         if (distances.get(endVertex) == Double.POSITIVE_INFINITY) {
@@ -112,16 +102,11 @@ public class Dijkstras<T extends Distancable<T>> extends SearchAlgorithm<T> {
         double distance = 0;
         while (currentVertex != null) {
             pathList.add(0, currentVertex);
-            GridVertex gv = (GridVertex) currentVertex;
-            gv.setPath();
-            this.notifyObservers(gv.getValue());
-            try { Thread.sleep(10); } catch (InterruptedException e) {}
             currentVertex = predecessors.get(currentVertex);
             if (currentVertex != null) {
                 distance += currentVertex.getNeighbors().get(pathList.get(0));
             }
         }
-        this.running = false;
         return new Path<>(pathList, distance);
     }
 }
