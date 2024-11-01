@@ -45,7 +45,7 @@ public class BreadthFirstSearch<T extends Distancable<T>> extends SearchAlgorith
             }
             try { Thread.sleep(this.delay); } catch (InterruptedException e) {}
         }
-        if (!this.running) {
+        if (!this.running || !predecessors.containsKey(endVertex)) {
             return null;
         }
         Path<WVertex<T>> path = new Path<>();
