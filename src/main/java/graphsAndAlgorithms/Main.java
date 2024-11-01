@@ -37,17 +37,24 @@ public class Main {
         Location[][] randomPoints = new Location[size][2];
         for (int i = 0; i < runs; i++) {
             for (int j = 0; j < size; j++) {
-                randomPoints[j][0] = vertices.get((int)(Math.random() * size));
-                randomPoints[j][1] = vertices.get((int)(Math.random() * size));
+                Location p1 = vertices.get((int)(Math.random() * size));
+                Location p2 = vertices.get((int)(Math.random() * size));
+                while (p1.equals(p2)) {
+                    p1 = vertices.get((int)(Math.random() * size));
+                    p2 = vertices.get((int)(Math.random() * size));
+                }
+                randomPoints[j][0] = p1;
+                randomPoints[j][1] = p2;
             }
         }
         System.out.println("Found in " + round((System.nanoTime() - t2) / 1000000000.0, 4) + "s\n");
 
         BreadthFirstSearch<Location> bfs = new BreadthFirstSearch<>(graph);
         DepthFirstSearch<Location> dfs = new DepthFirstSearch<>(graph);
+        NearestNeighbor<Location> nearestNeighbor = new NearestNeighbor<>(graph);
         Dijkstras<Location> dijkstras = new Dijkstras<>(graph);
         AStar<Location> aStar = new AStar<>(graph);
-        SearchAlgorithm<Location>[] searchAlgorithms = new SearchAlgorithm[] { bfs, dfs, dijkstras, aStar };
+        SearchAlgorithm<Location>[] searchAlgorithms = new SearchAlgorithm[] { bfs, dfs, nearestNeighbor, dijkstras, aStar };
 
         for (SearchAlgorithm<Location> searchAlgorithm : searchAlgorithms) {
             System.out.println("Testing " + searchAlgorithm.getClass().getSimpleName() + " " + runs + " times...");

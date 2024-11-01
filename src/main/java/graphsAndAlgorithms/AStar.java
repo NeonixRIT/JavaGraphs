@@ -7,6 +7,6 @@ public class AStar<T extends Distancable<T>> extends Dijkstras<T> {
 
     @Override
     public double heuristic(T start, T end) {
-        return Math.pow(start.distance(end), 10);
+        return start.distance(end);
     }
 }

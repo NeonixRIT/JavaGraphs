@@ -115,7 +115,7 @@ public class Dijkstras<T extends Distancable<T>> extends SearchAlgorithm<T> {
             GridVertex gv = (GridVertex) currentVertex;
             gv.setPath();
             this.notifyObservers(gv.getValue());
-            try { Thread.sleep(1); } catch (InterruptedException e) {}
+            try { Thread.sleep(10); } catch (InterruptedException e) {}
             currentVertex = predecessors.get(currentVertex);
             if (currentVertex != null) {
                 distance += currentVertex.getNeighbors().get(pathList.get(0));

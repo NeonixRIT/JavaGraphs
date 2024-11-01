@@ -57,7 +57,7 @@ public class DepthFirstSearch<T extends Distancable<T>> extends SearchAlgorithm<
                         GridVertex gvVertex = (GridVertex) vertex;
                         gvVertex.setPath();
                         this.notifyObservers(gvVertex.getValue());
-                        try { Thread.sleep(1); } catch (InterruptedException e) {}
+                        try { Thread.sleep(10); } catch (InterruptedException e) {}
                         return path;
                     }
                 }
